@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CCentralWidget</class>
+ <widget class="QWidget" name="CCentralWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>564</width>
+    <height>569</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CCentralWidget</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="10">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <item>
+      <widget class="CGLWidget" name="glwidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CGLWidget</class>
+   <extends>QWidget</extends>
+   <header>GLwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="GLTestsApp.qrc"/>
+ </resources>
+ <connections/>
+ <slots>
+  <slot>UpClicked()</slot>
+  <slot>DownClicked()</slot>
+  <slot>LeftClicked()</slot>
+  <slot>RightClicked()</slot>
+  <slot>SliderReleased()</slot>
+  <slot>ShowGridClicked()</slot>
+  <slot>ComboBoxIndexChanged(QString)</slot>
+  <slot>ShowConnectionsClicked()</slot>
+  <slot>SliderValueChanged(int)</slot>
+  <slot>LineWidthChanged(int)</slot>
+ </slots>
+</ui>

@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ShaderEditor</class>
+ <widget class="QDialog" name="ShaderEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>923</width>
+    <height>1018</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_5">
+   <item>
+    <widget class="QSplitter" name="splitter_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="opaqueResize">
+      <bool>true</bool>
+     </property>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="opaqueResize">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>VertexShader</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="loadVertexFile">
+            <property name="text">
+             <string>Load...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveVertexFile">
+            <property name="text">
+             <string>Save...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="compileVertex">
+            <property name="text">
+             <string>Compile</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="vertexShaderEdit"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>FragmentShader</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="loadFragmentFile">
+            <property name="text">
+             <string>Load...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveFragmentFile">
+            <property name="text">
+             <string>Save...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="compileFragmentFile">
+            <property name="text">
+             <string>Compile</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="fragmentShaderEdit"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>ProgramShader</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QPushButton" name="loadShaders">
+             <property name="text">
+              <string>LoadShaders</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="linkProgram">
+             <property name="text">
+              <string>LinkProgram</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="useProgram">
+             <property name="text">
+              <string>UseProgram</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="clearGL">
+             <property name="text">
+              <string>ClearGL</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="clean">
+             <property name="text">
+              <string>Clean</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="log">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>700</height>
+          </size>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>loadVertexFile</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>LoadVertexFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>42</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>72</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveVertexFile</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>SaveVertexFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>124</x>
+     <y>37</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>compileVertex</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>CompileVertex()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>456</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>304</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadFragmentFile</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>LoadFragmentFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>540</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveFragmentFile</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>SaveFragmentFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>554</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>523</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>compileFragmentFile</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>CompileFragment()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>911</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>718</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearGL</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>ClearGL()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>829</x>
+     <y>553</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>641</x>
+     <y>944</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clean</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>Clean()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>910</x>
+     <y>553</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>726</x>
+     <y>944</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>loadShaders</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>LoadShaders()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>59</x>
+     <y>538</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>962</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>linkProgram</sender>
+   <signal>clicked()</signal>
+   <receiver>ShaderEditor</receiver>
+   <slot>LinkProgram()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>125</x>
+     <y>542</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>62</x>
+     <y>1013</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>LoadVertexFile()</slot>
+  <slot>LoadFragmentFile()</slot>
+  <slot>SaveVertexFile()</slot>
+  <slot>SaveFragmentFile()</slot>
+  <slot>CompileVertex()</slot>
+  <slot>CompileFragment()</slot>
+  <slot>LinkProgram()</slot>
+  <slot>UseProgram()</slot>
+  <slot>ClearGL()</slot>
+  <slot>Clean()</slot>
+  <slot>LoadShaders()</slot>
+ </slots>
+</ui>
