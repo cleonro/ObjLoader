@@ -45,8 +45,8 @@ OTestCArm::OTestCArm(float size)
     //avatar = loader->parse_obj_file("d:\\NPmiAvatar.obj", resource_manager, name);
     //avatar = loader->parse_obj_file("d:\\PivotPmiAvatar.obj", resource_manager, name);
     //avatar = loader->parse_obj_file("d:\\NPivotPmiAvatar.obj", resource_manager, name);
-    avatar = loader->parse_obj_file("d:/sdr.obj", resource_manager, name);
-    printf("obj file loaded");
+    avatar = loader->parse_obj_file("d:\\avatar.obj", resource_manager, name);
+    printf("obj file loaded\n");
 
     clone_avatar = new C_AVATAR_OBJ;
     clone_avatar->clone(avatar);
@@ -71,8 +71,8 @@ OTestCArm::~OTestCArm()
 
 void OTestCArm::Draw()
 {
-   OQuaternion q(quat_.X(), quat_.Y(), quat_.Z(), quat_.W());
-   clone_avatar->matrix() = q.ToMatrix();
+    C_QUATERNION q(quat_.X(), quat_.Y(), quat_.Z(), quat_.W());
+   clone_avatar->matrix() = q.to_matrix();
    clone_avatar->draw();
    return;
 

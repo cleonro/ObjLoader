@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = GLTestsApp
 DESTDIR = ../GLTestsApp-build-desktop
-QT += core gui opengl widgets
+QT += core gui opengl
 CONFIG += debug
 DEFINES += QT_LARGEFILE_SUPPORT QT_OPENGL_LIB
 INCLUDEPATH += ./GeneratedFiles \
@@ -16,7 +16,8 @@ INCLUDEPATH += ./GeneratedFiles \
 
 DEPENDPATH += . \
 
-QMAKE_LIBDIR += ./OtherLibs
+#QMAKE_LIBDIR += ./OtherLibs
+#LIBINCLUDE += ./OtherLibs
 
 #linux libs
 unix: LIBS += -lGL \
@@ -25,6 +26,9 @@ else:win32:
 #windows libs
       LIBS += -lopengl32 \
               -lglu32 \
+              -l3DLibraryCommon
+
+
 
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug
@@ -62,7 +66,8 @@ HEADERS += ./GLWidget.h \
     Classes/AppObjLoader/obj_loader.h \
     Classes/AppObjLoader/3d_model.h \
     Classes/AppObjLoader/3d_resource_manager.h \
-    Classes/AppObjLoader/avatar_obj.h
+    Classes/AppObjLoader/avatar_obj.h \
+    Classes/AppTestCArm/carmwidget.h
 SOURCES += ./GLTestsApp.cpp \
     ./GLWidget.cpp \
     ./main.cpp \
@@ -90,7 +95,16 @@ SOURCES += ./GLTestsApp.cpp \
     Classes/AppObjLoader/3d_model.cpp \
     Classes/AppObjLoader/3d_object.cpp \
     Classes/AppObjLoader/3d_resource_manager.cpp \
-    Classes/AppObjLoader/avatar_obj.cpp
+    Classes/AppObjLoader/avatar_obj.cpp \
+    Classes/AppTestCArm/carmwidget.cpp
 FORMS += ./GLTestsApp.ui \
-    ./ShaderWidget.ui
+    ./ShaderWidget.ui \
+    Classes/AppTestCArm/carmwidget.ui
 RESOURCES += GLTestsApp.qrc
+
+win32: LIBS += -L$$PWD/OtherLibs/ -l3DLibraryCommon
+
+INCLUDEPATH += $$PWD/OtherLibs
+DEPENDPATH += $$PWD/OtherLibs
+
+win32: PRE_TARGETDEPS += $$PWD/OtherLibs/3DLibraryCommon.lib

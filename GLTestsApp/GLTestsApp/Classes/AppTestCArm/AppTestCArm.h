@@ -28,6 +28,8 @@ public:
 
     virtual void* GetDataForInput();
 
+    void* CArm() {return c_arm_;}
+
 protected:
     static OAppTestCArm& GetInstance();
 

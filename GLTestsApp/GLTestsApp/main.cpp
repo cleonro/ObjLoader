@@ -1,5 +1,5 @@
 #include "GLTestsApp.h"
-#include <QApplication>
+#include <QtGui/QApplication>
 
 #include "AppObjLoader/3d_model.h"
 #include "AppObjLoader/obj_loader.h"
