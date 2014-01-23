@@ -17,6 +17,8 @@ C_3D_MODEL* avatar = NULL;
 C_AVATAR_OBJ* clone_avatar = NULL;
 //
 
+extern string AppResPath;
+
 OTestCArm::OTestCArm(float size)
 {
     inner_ray_ = size;
@@ -32,21 +34,23 @@ OTestCArm::OTestCArm(float size)
     dra_ = 0.0f;
     quat_ = OQuaternion(0, 0, 0, 1);
 
-    //test-remove
-    string name = "avatar";
-    //avatar = loader->parse_obj_file("d:\\cube.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\PmiAvatar.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\uh60.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\Rubik.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\av_table.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\av_carm.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\2cubes.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\ncube.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\NPmiAvatar.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\PivotPmiAvatar.obj", resource_manager, name);
-    //avatar = loader->parse_obj_file("d:\\NPivotPmiAvatar.obj", resource_manager, name);
-    avatar = loader->parse_obj_file("d:\\avatar.obj", resource_manager, name);
-    printf("obj file loaded\n");
+    std::string name = "avatar";
+    //"cube.obj"
+    //"PmiAvatar.obj"
+    //"uh60.obj"
+    //"Rubik.obj"
+    //"av_table.obj"
+    //"av_carm.obj"
+    //"2cubes.obj"
+    //"ncube.obj"
+    //"NPmiAvatar.obj"
+    //"PivotPmiAvatar.obj"
+    //"NPivotPmiAvatar.obj"
+    //"sdr.obj"
+
+    std::string path = AppResPath + "NPivotPmiAvatar.obj";
+    avatar = loader->parse_obj_file(path.c_str(), resource_manager, name);
+    printf("obj file loaded");
 
     clone_avatar = new C_AVATAR_OBJ;
     clone_avatar->clone(avatar);
@@ -71,42 +75,10 @@ OTestCArm::~OTestCArm()
 
 void OTestCArm::Draw()
 {
-    C_QUATERNION q(quat_.X(), quat_.Y(), quat_.Z(), quat_.W());
-   clone_avatar->matrix() = q.to_matrix();
+   OQuaternion q(quat_.X(), quat_.Y(), quat_.Z(), quat_.W());
+   clone_avatar->matrix() = q.ToMatrix();
    clone_avatar->draw();
    return;
-
-   glPushMatrix();
-   outer_ring_->DrawMesh(OSpecialMesh::THORUS);
-
-   //glRotatef(angulation_, 0.0f, 1.0f, 0.0f);
-   //glRotatef(rotation_, 1.0f, 0.0f, 0.0f);
-   //glRotatef(dra_, 0, 0, 1);
-
-   ////ComputeQuat();
-   OMatrix4 orient = quat_.ToMatrix();
-   glMultMatrixf(orient.GetSafeM());
-
-   DrawAxes(2.4f * inner_ray_);
-
-   glPopMatrix();
-   glPushMatrix();
-   float temp_dra = dra_;
-   dra_ = 0.0f;
-   ComputeQuat();
-   orient = quat_.ToMatrix();
-   glMultMatrixf(orient.GetSafeM());
-
-  // glRotatef(angulation_, 0, 1, 0);
-  // glRotatef(rotation_, 1, 0, 0);
-  // glRotatef(dra_, 0, 0, 1);
-
-   inner_ring_->DrawMesh(OSpecialMesh::THORUS);
-   glTranslatef(-inner_ray_, 0.0f, 0.0f);
-   rod_->DrawMesh(OSpecialMesh::CYLINDER);
-   dra_ = temp_dra;
-   glPopMatrix();
-
 }
 
 float& OTestCArm::Angulation()

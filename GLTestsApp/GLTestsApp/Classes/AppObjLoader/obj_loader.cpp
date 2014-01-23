@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <stdlib.h>
 
 C_OBJ_LOADER::C_OBJ_LOADER()
 {
@@ -64,11 +65,11 @@ void C_OBJ_LOADER::v_line(vector<string> tokens)
         return;
     }
     float x;
-    int ix = sscanf_s(tokens[1].c_str(), "%f", &x);
+    int ix = sscanf(tokens[1].c_str(), "%f", &x);
     float y;
-    int iy = sscanf_s(tokens[2].c_str(), "%f", &y);
+    int iy = sscanf(tokens[2].c_str(), "%f", &y);
     float z;
-    int iz = sscanf_s(tokens[3].c_str(), "%f", &z);
+    int iz = sscanf(tokens[3].c_str(), "%f", &z);
 
     if(ix <= 0 || iy <= 0 || iz <= 0)
     {
@@ -95,11 +96,11 @@ void C_OBJ_LOADER::vn_line(vector<string> tokens)
         return;
     }
     float nx;
-    int inx = sscanf_s(tokens[1].c_str(), "%f", &nx);
+    int inx = sscanf(tokens[1].c_str(), "%f", &nx);
     float ny;
-    int iny = sscanf_s(tokens[2].c_str(), "%f", &ny);
+    int iny = sscanf(tokens[2].c_str(), "%f", &ny);
     float nz;
-    int inz = sscanf_s(tokens[3].c_str(), "%f", &nz);
+    int inz = sscanf(tokens[3].c_str(), "%f", &nz);
 
     if(inx <= 0 || iny <= 0 || inz <= 0)
     {

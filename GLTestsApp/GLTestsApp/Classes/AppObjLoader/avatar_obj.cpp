@@ -1,14 +1,14 @@
 #include "avatar_obj.h"
-#include "quaternion.h"
+#include "Math/Quaternion.h"
 #include "math_utils.h"
 #include <windows.h>
 #include <GL/gl.h>
 
 C_AVATAR_OBJ::C_AVATAR_OBJ()
 {
-    C_QUATERNION q(0.0f, 0.0f, 0.0f, 1.0f);
-    m_carm_orientation = q.to_matrix();
-    m_carm_pivot = C_VECTOR3(0.0f, 0.0f, 0.0f);
+    OQuaternion q(0.0f, 0.0f, 0.0f, 1.0f);
+    m_carm_orientation = q.ToMatrix();
+    m_carm_pivot = OVector3(0.0f, 0.0f, 0.0f);
     m_carm = NULL;
 }
 
@@ -41,9 +41,9 @@ void C_AVATAR_OBJ::init()
     const C_3D_MODEL::T_3D_MODEL_VERTEX* vertices = pivot->vertices();
     C_3D_MODEL::T_3D_MODEL_VERTEX point = vertices[indices[0]];
 
-    m_carm_pivot.x() = point.x;
-    m_carm_pivot.y() = point.y;
-    m_carm_pivot.z() = point.z;
+    m_carm_pivot.X() = point.x;
+    m_carm_pivot.Y() = point.y;
+    m_carm_pivot.Z() = point.z;
 
     //test-remove
     //float hsin = sinf(0.5f * deg2rad(45.0f));
@@ -57,9 +57,9 @@ void C_AVATAR_OBJ::draw_carm()
 {
     glPushMatrix();
 
-    glTranslatef(m_carm_pivot.x(), m_carm_pivot.y(), m_carm_pivot.z());
-    glMultMatrixf(m_carm_orientation.matrix_v());
-    glTranslatef(-m_carm_pivot.x(), -m_carm_pivot.y(), -m_carm_pivot.z());
+    glTranslatef(m_carm_pivot.X(), m_carm_pivot.Y(), m_carm_pivot.Z());
+    glMultMatrixf(m_carm_orientation.GetSafeM());
+    glTranslatef(-m_carm_pivot.X(), -m_carm_pivot.Y(), -m_carm_pivot.Z());
 
     m_carm->draw();
 
@@ -74,14 +74,11 @@ void C_AVATAR_OBJ::draw()
         object = m_objects[i];
         if(object != m_carm && object->name() != PIVOT_NAME)
         {
-            glColor4f(0.35f, 0.35f, 0.95f, 1.0f);
             object->draw();
         }
+        else if(object == m_carm)
+        {
+            draw_carm();
+        }
     }
-    if(m_carm != NULL)
-    {
-        glColor4f(0.9f, 0.9f, 0.7f, 0.95f);
-        draw_carm();
-    }
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 }

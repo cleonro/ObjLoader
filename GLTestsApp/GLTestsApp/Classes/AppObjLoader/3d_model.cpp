@@ -14,10 +14,7 @@ C_3D_MODEL::~C_3D_MODEL()
     {
         delete m_objects[i];
     }
-    if(m_resource_manager != NULL)
-    {
-        m_resource_manager->free_model(m_name);
-    }
+    m_resource_manager->free_model(m_name);
 }
 
 void C_3D_MODEL::draw()

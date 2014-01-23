@@ -1,6 +1,7 @@
 #include <QDebug>
 #include "AppTestShader.h"
 
+extern std::string AppResPath;
 
 //shaders
 const char* vertex_shader_s = "\
@@ -178,14 +179,15 @@ void* OAppTestShader::GetDataForInput()
 void OAppTestShader::InitShader()
 {
 	//shader_.LoadSources(vertex_shader_s, fragment_shader_s);
-	shader_.LoadFileSources("vertex_shader.shd", "fragment_shader.shd");
+    shader_.LoadFileSources((AppResPath + "vertex_shader.shd").c_str(),
+                            (AppResPath + "fragment_shader.shd").c_str());
 	shader_.BuildAll();
 	char* vertex_log = shader_.ShaderInfoLog(1);
 	char* fragment_log = shader_.ShaderInfoLog(2);
 	char* program_log = shader_.ProgramInfoLog();
-	qDebug()<<vertex_log;
-	qDebug()<<fragment_log;
-	qDebug()<<program_log;
+    qDebug() << vertex_log;
+    qDebug() << fragment_log;
+    qDebug() << program_log;
 
 	delete [] vertex_log;
 	delete [] fragment_log;

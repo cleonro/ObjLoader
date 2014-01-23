@@ -7,6 +7,7 @@
 using namespace std;
 
 class C_3D_OBJECT;
+class C_3D_RESOURCE_MANAGER;
 
 class C_3D_MODEL
 {

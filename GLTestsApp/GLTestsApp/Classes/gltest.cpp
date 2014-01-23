@@ -5,6 +5,8 @@
 #include <iostream>
 #include "AppBaseState.h"
 
+extern std::string AppResPath;
+
 OSpecialMesh::OSpecialMesh(int n, int m, float size1, float size2)
 {
     R1 = size1;//50.0;
@@ -164,7 +166,8 @@ void OSpecialMesh::AddColors(int index, float red0, float green0, float blue0, f
 
 void OSpecialMesh::WriteToFile()
 {
-	FILE *f = fopen("Cylinder_.txt", "w");
+    std::string path = AppResPath + "Cylinder_.txt";
+    FILE *f = fopen(path.c_str(), "w");
 
 	fprintf(f, "%s\n", "[CenterlineProx]");
 	fprintf(f, "%s\n", "[Vessel]");

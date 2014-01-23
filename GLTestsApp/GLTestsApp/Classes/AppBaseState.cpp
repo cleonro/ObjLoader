@@ -5,6 +5,8 @@
 #include "AppTestCArm/AppTestCArm.h"
 
 //AppBaseState
+#include <string>
+extern std::string AppResPath;
 
 OAppBaseState::OAppBaseState()
 {
@@ -61,23 +63,16 @@ void OAppBaseState::Draw()
     DrawAxes(100.0f);
 	glEnable(GL_NORMALIZE);
 	
-	
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
-	//glColor4f(0.1, 0.3, 0.7, 0.8);
-	
- //   const int nr_triangles = 2 * (N - 1) * (M - 1);
- //   glVertexPointer(3, GL_FLOAT, 0, c_vertices);
- //   glColorPointer(4, GL_FLOAT, 0, c_colors);
- //   glNormalPointer(GL_FLOAT, 0, c_normals);
- //   glDrawElements(GL_TRIANGLES, 3 * nr_triangles, GL_UNSIGNED_INT, c_indices);
-		
+
     static OSpecialMesh mesh(100, 100, 50.0f, 5.0f);
-    mesh.DrawMeshFromFile("Bifurcation 1 (ARO).txt");
-    mesh.DrawMesh(OSpecialMesh::THORUS);
-    mesh.DrawMesh(OSpecialMesh::SPHERE);
-    mesh.DrawMesh(OSpecialMesh::CYLINDER);
+    static std::string path = AppResPath + "Bifurcation 1 (ARO).txt";
+    mesh.DrawMeshFromFile(path.c_str());
+    //mesh.DrawMesh(OSpecialMesh::THORUS);
+    //mesh.DrawMesh(OSpecialMesh::SPHERE);
+    //mesh.DrawMesh(OSpecialMesh::CYLINDER);
     glDisableClientState(GL_COLOR_ARRAY);
 
 	LightOff();

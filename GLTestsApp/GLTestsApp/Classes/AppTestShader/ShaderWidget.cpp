@@ -36,7 +36,7 @@ void OShaderWidget::LoadFile(int type)
 	if(file_name.isEmpty()) {
 		return;
 	}
-	std::fstream fl(file_name.toAscii().data(), std::ios::in);
+	std::fstream fl(file_name.toLatin1().data(), std::ios::in);
 	int sz = 0;
 	fl.seekg(0, std::ios::end);
 	sz = fl.tellg();
@@ -75,11 +75,11 @@ void OShaderWidget::SaveFile(int type)
 		return;
 	}
 
-	std::ofstream fl(file_name.toAscii().data(), std::ios::out);
+	std::ofstream fl(file_name.toLatin1().data(), std::ios::out);
 	QString buffer = txt->toPlainText();
 // 	int sz = buffer.length();
-// 	fl.write(buffer.toAscii().data(), sz);
-	fl<<buffer.toAscii().data();
+// 	fl.write(buffer.toLatin1().data(), sz);
+	fl<<buffer.toLatin1().data();
 	fl.close();
 }
 
@@ -96,7 +96,7 @@ void OShaderWidget::SaveVertexFile()
 void OShaderWidget::CompileVertex()
 {
 	QString str = ui_.vertexShaderEdit->toPlainText();
-	shader_->LoadShaderString(str.toAscii().data(), 1);
+	shader_->LoadShaderString(str.toLatin1().data(), 1);
 	shader_->CompileShader(1);
 	char* log = shader_->ShaderInfoLog(1);
 	ui_.log->appendPlainText(log);
@@ -116,7 +116,7 @@ void OShaderWidget::SaveFragmentFile()
 void OShaderWidget::CompileFragment()
 {
 	QString str = ui_.fragmentShaderEdit->toPlainText();
-	shader_->LoadShaderString(str.toAscii().data(), 2);
+	shader_->LoadShaderString(str.toLatin1().data(), 2);
 	shader_->CompileShader(2);
 	char* log = shader_->ShaderInfoLog(2);
 	ui_.log->appendPlainText(log);

@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET = GLTestsApp
 DESTDIR = ../GLTestsApp-build-desktop
-QT += core gui opengl
+QT += core gui opengl widgets
 CONFIG += debug
 DEFINES += QT_LARGEFILE_SUPPORT QT_OPENGL_LIB
 INCLUDEPATH += ./GeneratedFiles \
@@ -16,8 +16,7 @@ INCLUDEPATH += ./GeneratedFiles \
 
 DEPENDPATH += . \
 
-#QMAKE_LIBDIR += ./OtherLibs
-#LIBINCLUDE += ./OtherLibs
+QMAKE_LIBDIR += ./OtherLibs
 
 #linux libs
 unix: LIBS += -lGL \
@@ -26,15 +25,11 @@ else:win32:
 #windows libs
       LIBS += -lopengl32 \
               -lglu32 \
-              -l3DLibraryCommon
-
-
 
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
-win32:RC_FILE = GLTestsApp.rc
 HEADERS += ./GLWidget.h \
     ./GLTestsApp.h \
     ./Classes/Math/Matrix4x4.h \
@@ -66,8 +61,7 @@ HEADERS += ./GLWidget.h \
     Classes/AppObjLoader/obj_loader.h \
     Classes/AppObjLoader/3d_model.h \
     Classes/AppObjLoader/3d_resource_manager.h \
-    Classes/AppObjLoader/avatar_obj.h \
-    Classes/AppTestCArm/carmwidget.h
+    Classes/AppObjLoader/avatar_obj.h
 SOURCES += ./GLTestsApp.cpp \
     ./GLWidget.cpp \
     ./main.cpp \
@@ -95,16 +89,9 @@ SOURCES += ./GLTestsApp.cpp \
     Classes/AppObjLoader/3d_model.cpp \
     Classes/AppObjLoader/3d_object.cpp \
     Classes/AppObjLoader/3d_resource_manager.cpp \
-    Classes/AppObjLoader/avatar_obj.cpp \
-    Classes/AppTestCArm/carmwidget.cpp
+    Classes/AppObjLoader/avatar_obj.cpp
 FORMS += ./GLTestsApp.ui \
-    ./ShaderWidget.ui \
-    Classes/AppTestCArm/carmwidget.ui
+    ./ShaderWidget.ui
 RESOURCES += GLTestsApp.qrc
 
-win32: LIBS += -L$$PWD/OtherLibs/ -l3DLibraryCommon
-
-INCLUDEPATH += $$PWD/OtherLibs
-DEPENDPATH += $$PWD/OtherLibs
-
-win32: PRE_TARGETDEPS += $$PWD/OtherLibs/3DLibraryCommon.lib
+##DEFINES += APPRESPATH="d:/Organized_Work_2014[gitr]/QtProjects/ObjLoader/Resources/"

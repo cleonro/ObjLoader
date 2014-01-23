@@ -2,7 +2,7 @@
 #include "AppBaseState.h"
 #include "InputMgr.h"
 
-GLTestsApp::GLTestsApp(QWidget *parent, Qt::WFlags flags)
+GLTestsApp::GLTestsApp(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags)
 {
 	this->setBaseSize(QSize(1024, 768));
@@ -10,9 +10,6 @@ GLTestsApp::GLTestsApp(QWidget *parent, Qt::WFlags flags)
 	
         connect(ui_.actionShader_Editor, SIGNAL(triggered(bool)), this, SLOT(OnViewShaderEditor()));
         ui_.actionShader_Editor->setVisible(false);
-
-        connect(ui_.actionCArm_widget, SIGNAL(triggered(bool)), this, SLOT(OnViewCArmWidget()));
-        ui_.actionCArm_widget->setVisible(false);
 
 	this->setWindowTitle("GLTestsApp");
 
@@ -51,11 +48,6 @@ void GLTestsApp::OnViewShaderEditor()
         shader_widget_.show();
 }
 
-void GLTestsApp::OnViewCArmWidget()
-{
-    carm_widget_.show();
-}
-
 void GLTestsApp::OnStatesBaseState()
 {
     QGLWidget* gl_widget = this->GLWidget();
@@ -63,8 +55,6 @@ void GLTestsApp::OnStatesBaseState()
        return;
     }
     ui_.actionShader_Editor->setVisible(false);
-    ui_.actionCArm_widget->setVisible(false);
-
     QSize sz = gl_widget->size();
     float aspect = sz.width() * 1.0f / sz.height();
 
@@ -82,8 +72,6 @@ void GLTestsApp::OnStatesTestShader()
        return;
     }
     ui_.actionShader_Editor->setVisible(true);
-    ui_.actionCArm_widget->setVisible(false);
-
     QSize sz = gl_widget->size();
     float aspect = sz.width() * 1.0f / sz.height();
 
@@ -101,8 +89,6 @@ void GLTestsApp::OnStatesTestCArm()
        return;
     }
      ui_.actionShader_Editor->setVisible(false);
-     ui_.actionCArm_widget->setVisible(true);
-
      QSize sz = gl_widget->size();
      float aspect = sz.width() * 1.0f / sz.height();
 
