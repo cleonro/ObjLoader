@@ -16,6 +16,7 @@ OInputBaseState::~OInputBaseState(void)
 
 void OInputBaseState::OnLeftClick(QPoint p, void* data)
 {
+    (void)p;
 	if(!data) {
 		return;
 	}
@@ -54,6 +55,7 @@ void OInputBaseState::OnMouseDrag(QPoint p, QPoint p_start, void* data)
 
 void OInputBaseState::OnMouseMove(QPoint p, void* data)
 {
+    (void)p;
 	if(!data) {
 		return;
 	}
@@ -93,7 +95,7 @@ void OInputBaseState::OnMouseWheel(short zDelta, void* data)
 }
 
 
-void OInputBaseState::OnLeftDown(QPoint, void* data)
+void OInputBaseState::OnLeftDown(QPoint, void* /*data*/)
 {
 
 }
@@ -103,7 +105,12 @@ void OInputBaseState::OnLeftDown(QPoint, void* data)
 // 
 // }
 
-void OInputBaseState::OnKeyRelease(int key, void *data)
+void OInputBaseState::OnKeyRelease(int /*key*/, void */*data*/)
+{
+
+}
+
+void OInputBaseState::OnKeyPress(int /*key*/, void */*data*/)
 {
 
 }

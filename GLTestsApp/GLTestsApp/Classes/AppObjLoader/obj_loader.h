@@ -32,7 +32,7 @@ public:
     };
 
     C_OBJ_LOADER();
-    ~C_OBJ_LOADER();
+    virtual ~C_OBJ_LOADER();
 
     C_3D_MODEL* parse_obj_file(const char* file_name, C_3D_RESOURCE_MANAGER* resource_manager, string model_name);
 

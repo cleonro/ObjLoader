@@ -42,12 +42,12 @@ void OAppBaseState::Init(void *data)
 }
 
 
-void OAppBaseState::Update(void *data)
+void OAppBaseState::Update(void */*data*/)
 {
 	camera_.SetGLModelViewMatrix();
 }
 
-void OAppBaseState::Update2(void* data)
+void OAppBaseState::Update2(void* /*data*/)
 {
 
 }
@@ -96,7 +96,7 @@ void OAppBaseState::LightOn()
 	const GLfloat pos1[4] = { 0.f, 0.f, -70.0f, 0.0f };
 	const GLfloat dir[3] = { 0.0f, 0.0f, -1.0f};
 	const GLfloat dir1[3] = { 0.0f, 0.0f, 1.0f};
-	const GLfloat cutoff = 85.0f;
+    //const GLfloat cutoff = 85.0f;
 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
 	//glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, true);

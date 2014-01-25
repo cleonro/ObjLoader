@@ -188,7 +188,7 @@ void OSpecialMesh::WriteToFile()
 		float red = c_colors[4 * index];
 		float green = c_colors[4 * index + 1];
 		float blue = c_colors[4 * index + 2];
-		float alpha = c_colors[4 * index + 3];
+        //float alpha = c_colors[4 * index + 3];
 		
 		int ired = red * 255;
 		int igreen = green * 255;
@@ -297,7 +297,7 @@ void OSpecialMesh::GenerateDataFromFile(const char* file_name)
             linestream.clear();
             linestream.str(line.c_str());
             linestream >> coord.x >> coord.y >> coord.z >> nor.x >> nor.y >> nor.z >> icol;
-            int i = 0;
+            size_t i = 0;
             for(i = 0; i < coordinates.size(); i++) {
                 if(coord == coordinates[i]) {
                     break;
@@ -362,7 +362,7 @@ void OSpecialMesh::GenerateDataFromFile(const char* file_name)
             c_colors[4 * i + 3] = col.a;
         }
 
-        for(int i = 0; i < indices.size(); i++) {
+        for(size_t i = 0; i < indices.size(); i++) {
             c_indices[i] = indices[i];
         }
         NPoints = indices.size();

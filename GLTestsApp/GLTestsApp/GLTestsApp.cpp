@@ -38,7 +38,7 @@ QSize GLTestsApp::sizeHint() const
 	return QSize(1024, 768);
 }
 
-void GLTestsApp::closeEvent(QCloseEvent * event)
+void GLTestsApp::closeEvent(QCloseEvent * /*event*/)
 {
 	QApplication::quit();
 }
@@ -106,5 +106,16 @@ QGLWidget* GLTestsApp::GLWidget()
 
 void GLTestsApp::keyReleaseEvent(QKeyEvent *event)
 {
+    if(event->isAutoRepeat()) {
+        return;
+    }
     INPUTMGR->OnKeyRelease(event->key());
+}
+
+void GLTestsApp::keyPressEvent(QKeyEvent *event)
+{
+    if(event->isAutoRepeat()) {
+        return;
+    }
+    INPUTMGR->OnKeyPress(event->key());
 }

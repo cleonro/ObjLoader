@@ -12,10 +12,7 @@ class C_AVATAR_OBJ : public C_3D_MODEL
 {
 public:
     C_AVATAR_OBJ();
-    ~C_AVATAR_OBJ();
-
-
-
+    virtual ~C_AVATAR_OBJ();
 
     OMatrix4& matrix() {return m_carm_orientation;}
     OVector3& pivot() {return m_carm_pivot;}

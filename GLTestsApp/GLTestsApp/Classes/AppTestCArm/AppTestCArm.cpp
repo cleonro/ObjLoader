@@ -43,7 +43,7 @@ void OAppTestCArm::Update(void* data)
 
     z_axis_ = q_z_axis.V3();
 
-    z_axis_ = 1.2f * c_arm_->Size() * z_axis_;
+    //z_axis_ = 1.2f * c_arm_->Size() * z_axis_;
 
     xz_proj_ = OVector3(z_axis_.X(), 0, z_axis_.Z());
     yz_proj_ = OVector3(0, z_axis_.Y(), z_axis_.Z());
@@ -69,7 +69,7 @@ void OAppTestCArm::Draw()
     glEnableClientState(GL_COLOR_ARRAY);
 
     glPushMatrix();
-    glScalef(5.0f, 5.0f, 5.0f);
+    //glScalef(5.0f, 5.0f, 5.0f);
     c_arm_->Draw();
     glPopMatrix();
 

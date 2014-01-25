@@ -1,7 +1,8 @@
 #include "avatar_obj.h"
 #include "Math/Quaternion.h"
-#include "math_utils.h"
-#include <windows.h>
+#include "Utils/math_utils.h"
+#include "VariousObjects.h"
+//#include <windows.h>
 #include <GL/gl.h>
 
 C_AVATAR_OBJ::C_AVATAR_OBJ()
@@ -62,6 +63,7 @@ void C_AVATAR_OBJ::draw_carm()
     glTranslatef(-m_carm_pivot.X(), -m_carm_pivot.Y(), -m_carm_pivot.Z());
 
     m_carm->draw();
+    //VDraws->DrawAxes(50.0, 1.0);
 
     glPopMatrix();
 }

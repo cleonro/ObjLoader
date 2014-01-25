@@ -41,7 +41,7 @@ protected:
 
     protected:
         C_3D_OBJECT();
-        ~C_3D_OBJECT();
+        virtual ~C_3D_OBJECT();
 
         C_3D_OBJECT* clone();
 
@@ -56,7 +56,7 @@ public:
 
 
     C_3D_MODEL();
-    ~C_3D_MODEL();
+    virtual ~C_3D_MODEL();
 
     virtual void draw();
 

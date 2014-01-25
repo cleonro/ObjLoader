@@ -15,19 +15,16 @@ C_3D_RESOURCE_MANAGER* resource_manager = new C_3D_RESOURCE_MANAGER;
 C_OBJ_LOADER* loader = new C_OBJ_LOADER;
 C_3D_MODEL* avatar = NULL;
 C_AVATAR_OBJ* clone_avatar = NULL;
+
+//test object data
+C_3D_MODEL* test_object = NULL;
 //
 
 extern string AppResPath;
 
 OTestCArm::OTestCArm(float size)
 {
-    inner_ray_ = size;
-    outer_ray_ = 1.8f * inner_ray_;
-
-    inner_ring_ = new OSpecialMesh(50, 50, inner_ray_, inner_ray_ * 0.025f);
-    outer_ring_ = new OSpecialMesh(50, 50, outer_ray_, outer_ray_ * 0.025f);
-    float cyl_sz = outer_ray_ - inner_ray_;
-    rod_ = new OSpecialMesh(50, 50, cyl_sz, cyl_sz * 0.05f);
+    (void)size;
 
     angulation_ = 0.0f;
     rotation_ = 0.0f;
@@ -48,9 +45,14 @@ OTestCArm::OTestCArm(float size)
     //"NPivotPmiAvatar.obj"
     //"sdr.obj"
 
+    //avatar
     std::string path = AppResPath + "NPivotPmiAvatar.obj";
     avatar = loader->parse_obj_file(path.c_str(), resource_manager, name);
     printf("obj file loaded");
+
+    //test object
+    path = AppResPath + "sdr.obj";
+    test_object =  loader->parse_obj_file(path.c_str(), resource_manager, "test_object");
 
     clone_avatar = new C_AVATAR_OBJ;
     clone_avatar->clone(avatar);
@@ -62,10 +64,6 @@ OTestCArm::OTestCArm(float size)
 
 OTestCArm::~OTestCArm()
 {
-    delete inner_ring_;
-    delete outer_ring_;
-    delete rod_;
-
     //test-remove
     delete clone_avatar;
     delete loader;
@@ -77,7 +75,15 @@ void OTestCArm::Draw()
 {
    OQuaternion q(quat_.X(), quat_.Y(), quat_.Z(), quat_.W());
    clone_avatar->matrix() = q.ToMatrix();
+
+   //avatar
+   glColor4f(0.1, 0.3, 0.7, 1.0);
    clone_avatar->draw();
+
+   //test-object
+   glColor4f(0.7, 0.3, 0.1, 1.0);
+   test_object->draw();
+
    return;
 }
 

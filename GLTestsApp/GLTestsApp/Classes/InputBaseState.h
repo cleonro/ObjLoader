@@ -20,10 +20,11 @@ public:
 	virtual void OnLeftDown(QPoint, void* data = NULL);
 	//virtual void OnRightDown(QPoint, void* data = NULL);
     virtual void OnKeyRelease(int key, void* data = NULL);
+    virtual void OnKeyPress(int key, void* data = NULL);
 
 protected:
 	OInputBaseState(void);
-	~OInputBaseState(void);
+    virtual ~OInputBaseState(void);
 
 };
 

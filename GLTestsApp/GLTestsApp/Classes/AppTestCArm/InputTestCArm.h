@@ -15,6 +15,7 @@ class OInputTestCArm : public OInputBaseState
     virtual void OnLeftDown(QPoint, void* data = NULL);
 
     virtual void OnKeyRelease(int key, void* data = NULL);
+    virtual void OnKeyPress(int key, void* data = NULL);
 
 protected:
     OInputTestCArm();

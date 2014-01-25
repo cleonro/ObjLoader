@@ -27,6 +27,7 @@ protected:
 	void closeEvent(QCloseEvent * event);
 
     void keyReleaseEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 
         QGLWidget* GLWidget();
 

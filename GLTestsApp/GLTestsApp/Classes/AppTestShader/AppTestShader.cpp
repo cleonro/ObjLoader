@@ -78,7 +78,7 @@ const char* fragment_shader_s = "\
 								} \
 								";
 
-
+/*
 // const char* vertex_shader_s = "\
 // 	uniform vec3 LightPosition;\
 // 	const float SpecularContribution = 0.3;\
@@ -109,9 +109,9 @@ const char* fragment_shader_s = "\
 // 		gl_Position    = ftransform();\
 // 		\
 // 	}";
+*/
 
-
-
+/*
 // const char* fragment_shader_s = "\
 // 	uniform vec3  BrickColor, MortarColor;\
 // 	uniform vec2  BrickSize;\
@@ -152,7 +152,7 @@ const char* fragment_shader_s = "\
 // 		gl_FragColor = gl_Color;\
 // 	}\
 //  	";
-
+*/
 
 OAppTestShader::OAppTestShader()
 {
@@ -201,12 +201,12 @@ void OAppTestShader::InitShader()
 	GLint brick_size = shader_.UniformLocation("BrickSize");
 	GLint brick_pct = shader_.UniformLocation("BrickPct");
 
-	float light_position_v [] = {0.0, 0.0, 4.0};
-	float brick_color_v [] = {1.0, 0.3, 0.2};
-	float mortar_color_v [] = {0.85, 0.86, 0.84};
+//	float light_position_v [] = {0.0, 0.0, 4.0};
+//	float brick_color_v [] = {1.0, 0.3, 0.2};
+//	float mortar_color_v [] = {0.85, 0.86, 0.84};
 
-	float brick_size_v [] = {0.3, 0.15};
-	float brick_pct_v [] = {0.90, 0.85};
+//	float brick_size_v [] = {0.3, 0.15};
+//	float brick_pct_v [] = {0.90, 0.85};
 
 	glUniform3f(light_position, 0.0, 0.0, 4.0);
 	glUniform3f(brick_color, 1.0, 0.3, 0.2);

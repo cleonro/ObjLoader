@@ -37,4 +37,5 @@ public:
 // 	virtual void OnRButtonUp(UINT nFlags, CPoint point);
 // 	virtual void OnRButtonDown(UINT nFlags, CPoint point);
     virtual void OnKeyRelease(int key);
+    virtual void OnKeyPress(int key);
 };

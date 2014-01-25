@@ -23,7 +23,7 @@ public:
     };
 
     C_3D_RESOURCE_MANAGER();
-    ~C_3D_RESOURCE_MANAGER();
+    virtual ~C_3D_RESOURCE_MANAGER();
 
     C_3D_MODEL* build_model(vector<unsigned int>& indices, vector<C_3D_MODEL::T_3D_MODEL_VERTEX>& vertices,
                             vector<unsigned int>& object_start_indices, vector<string>& object_names, string& model_name);

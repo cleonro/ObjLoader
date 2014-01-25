@@ -19,20 +19,12 @@ public:
     void ComputeQuat();
 
     OQuaternion Quat() {return quat_;}
-    float Size() {return inner_ray_;}
 
 protected:
 
-    float inner_ray_;
-    float outer_ray_;
-
     float angulation_;  //degrees
     float rotation_;    //degrees
-    float dra_;         //degrees
-
-    OSpecialMesh* inner_ring_;
-    OSpecialMesh* outer_ring_;
-    OSpecialMesh* rod_;
+    float dra_;         //degrees  
 
     OQuaternion  quat_;
 };

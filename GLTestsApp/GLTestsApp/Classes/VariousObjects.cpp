@@ -146,7 +146,7 @@ void OVariousObjects::DrawAxes(GLfloat size,GLfloat linewidth)
 	
 	glLineWidth(1.0f);
 	
-	glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_VERTEX_ARRAY);
 	//glDisableClientState(GL_NORMAL_ARRAY);
 }
 

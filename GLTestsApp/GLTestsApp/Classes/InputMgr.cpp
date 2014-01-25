@@ -69,6 +69,7 @@ void OInputMgr::OnMouseMove(QPoint point)
 
 void OInputMgr::OnMouseWheel(short zDelta, QPoint pt)
 {
+    (void)pt;
 	state_->OnMouseWheel(zDelta, APPMNGR.GetDataForInput());
 }
 
@@ -102,5 +103,28 @@ void OInputMgr::OnKeyRelease(int key)
     }
     if(key == Qt::Key_S) {
         state_->OnKeyRelease(5, data);
+    }
+}
+
+void OInputMgr::OnKeyPress(int key)
+{
+    void* data = APPMNGR.GetDataForInput();
+    if(key == Qt::Key_Left) {
+        state_->OnKeyPress(0, data);
+    }
+    if(key == Qt::Key_Right) {
+        state_->OnKeyPress(1, data);
+    }
+    if(key == Qt::Key_Up) {
+        state_->OnKeyPress(2, data);
+    }
+    if(key == Qt::Key_Down) {
+        state_->OnKeyPress(3, data);
+    }
+    if(key == Qt::Key_A) {
+        state_->OnKeyPress(4, data);
+    }
+    if(key == Qt::Key_S) {
+        state_->OnKeyPress(5, data);
     }
 }

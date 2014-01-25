@@ -14,6 +14,7 @@ OInputTestCArm::~OInputTestCArm()
 
 void OInputTestCArm::OnLeftClick(QPoint p, void* data)
 {
+    (void)p;
     if(!data) {
         return;
     }
@@ -40,6 +41,7 @@ void OInputTestCArm::OnMouseDrag(QPoint p, QPoint p_start, void* data)
 
 void OInputTestCArm::OnMouseMove(QPoint p, void* data)
 {
+    (void)p;
     if(!data) {
         return;
     }
@@ -65,7 +67,7 @@ void OInputTestCArm::OnMouseWheel(short zDelta, void* data)
 }
 
 
-void OInputTestCArm::OnLeftDown(QPoint, void* data)
+void OInputTestCArm::OnLeftDown(QPoint, void* /*data*/)
 {
 
 }
@@ -99,4 +101,9 @@ void OInputTestCArm::OnKeyRelease(int key, void *data)
             c_arm->Dra() += dt;
             break;
     }
+}
+
+void OInputTestCArm::OnKeyPress(int key, void* data)
+{
+
 }

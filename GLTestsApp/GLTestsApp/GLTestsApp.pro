@@ -56,7 +56,6 @@ HEADERS += ./GLWidget.h \
     OtherLibs/vector3.h \
     OtherLibs/quaternion.h \
     OtherLibs/matrix4.h \
-    OtherLibs/math_utils.h \
     OtherLibs/draw_utils.h \
     Classes/AppObjLoader/obj_loader.h \
     Classes/AppObjLoader/3d_model.h \
