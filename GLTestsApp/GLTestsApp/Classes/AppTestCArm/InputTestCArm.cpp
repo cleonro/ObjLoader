@@ -2,6 +2,10 @@
 #include "AppTestCArm.h"
 #include "GLCamera.h"
 
+//test - search another solution
+#include <QApplication>
+//
+
 OInputTestCArm::OInputTestCArm()
 {
 
@@ -78,32 +82,20 @@ void OInputTestCArm::OnKeyRelease(int key, void *data)
         return;
     }
 
-    float dt = 3.0f;
-
-    OTestCArm* c_arm = ((OAppTestCArm::tDataForInput*)data)->c_arm;
-    switch(key) {
-        case 0:
-            c_arm->Rotation() -= dt;
-            break;
-        case 1:
-            c_arm->Rotation() += dt;
-            break;
-        case 2:
-            c_arm->Angulation() += dt;
-            break;
-        case 3:
-            c_arm->Angulation() -= dt;
-            break;
-        case 4:
-            c_arm->Dra() -= dt;
-            break;
-        case 5:
-            c_arm->Dra() += dt;
-            break;
-    }
+    (void)key;
+    ((OAppTestCArm::tDataForInput*)data)->key_op_type = -1;
 }
 
 void OInputTestCArm::OnKeyPress(int key, void* data)
 {
+    if(!data) {
+        return;
+    }
 
+    ((OAppTestCArm::tDataForInput*)data)->key_op_type = key;
+    if(qApp->keyboardModifiers() & Qt::ShiftModifier) {
+        ((OAppTestCArm::tDataForInput*)data)->shift_modif = true;
+    } else {
+        ((OAppTestCArm::tDataForInput*)data)->shift_modif = false;
+    }
 }

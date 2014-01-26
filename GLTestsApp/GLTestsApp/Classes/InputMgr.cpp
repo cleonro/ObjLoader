@@ -104,6 +104,25 @@ void OInputMgr::OnKeyRelease(int key)
     if(key == Qt::Key_S) {
         state_->OnKeyRelease(5, data);
     }
+
+    if(key == Qt::Key_Z) {
+        state_->OnKeyRelease(6, data);
+    }
+    if(key == Qt::Key_X) {
+        state_->OnKeyRelease(7, data);
+    }
+    if(key == Qt::Key_C) {
+        state_->OnKeyRelease(8, data);
+    }
+    if(key == Qt::Key_V) {
+        state_->OnKeyRelease(9, data);
+    }
+    if(key == Qt::Key_B) {
+        state_->OnKeyRelease(10, data);
+    }
+    if(key == Qt::Key_N) {
+        state_->OnKeyRelease(11, data);
+    }
 }
 
 void OInputMgr::OnKeyPress(int key)
@@ -126,5 +145,24 @@ void OInputMgr::OnKeyPress(int key)
     }
     if(key == Qt::Key_S) {
         state_->OnKeyPress(5, data);
+    }
+
+    if(key == Qt::Key_Z) {
+        state_->OnKeyPress(6, data);
+    }
+    if(key == Qt::Key_X) {
+        state_->OnKeyPress(7, data);
+    }
+    if(key == Qt::Key_C) {
+        state_->OnKeyPress(8, data);
+    }
+    if(key == Qt::Key_V) {
+        state_->OnKeyPress(9, data);
+    }
+    if(key == Qt::Key_B) {
+        state_->OnKeyPress(10, data);
+    }
+    if(key == Qt::Key_N) {
+        state_->OnKeyPress(11, data);
     }
 }

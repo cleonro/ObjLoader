@@ -6,7 +6,7 @@ ODraw2D::ODraw2D(void)
 	hexagon_[0] = 0.0;
 	hexagon_[1] = 0.0;
 	for(int i = 1; i <= 6; i++) {
-		hexagon_[2 * i] = cos(i * M_PI / 3.0f);
+        hexagon_[2 * i] = cos(i * M_PI / 3.0f);
 		hexagon_[2 * i + 1] = sin(i * M_PI / 3.0f);
 	}
 	hexagon_[14] = hexagon_[2];

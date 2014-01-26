@@ -1,5 +1,6 @@
 #include "AppTestCArm.h"
 
+
 OAppTestCArm::OAppTestCArm()
 {
     c_arm_ = new OTestCArm(50.0f);
@@ -33,6 +34,8 @@ void OAppTestCArm::Init(void* data)
 void OAppTestCArm::Update(void* data)
 {
     OAppBaseState::Update(data);
+
+    KeyboardOperation();
 
     c_arm_->ComputeQuat();
 
@@ -69,7 +72,7 @@ void OAppTestCArm::Draw()
     glEnableClientState(GL_COLOR_ARRAY);
 
     glPushMatrix();
-    //glScalef(5.0f, 5.0f, 5.0f);
+    glScalef(5.0f, 5.0f, 5.0f);
     c_arm_->Draw();
     glPopMatrix();
 
@@ -92,4 +95,72 @@ void OAppTestCArm::Draw()
 
     LightOff();
 
+}
+
+void OAppTestCArm::KeyboardOperation()
+{
+    if(data_for_input_.key_op_type < 0) {
+        //no keyboard operation
+        return;
+    }
+
+    float dt = 3.0f;
+    float dt1 = 0.1f;
+    float dt2 = 0.2f * dt;
+    if(data_for_input_.shift_modif) {
+        dt1 *= -1;
+        dt2 *= -1;
+    }
+    OVector3 t;
+    switch(data_for_input_.key_op_type) {
+        case 0:
+            c_arm_->Rotation() -= dt;
+            break;
+        case 1:
+            c_arm_->Rotation() += dt;
+            break;
+        case 2:
+            c_arm_->Angulation() += dt;
+            break;
+        case 3:
+            c_arm_->Angulation() -= dt;
+            break;
+        case 4:
+            c_arm_->Dra() -= dt;
+            break;
+        case 5:
+            c_arm_->Dra() += dt;
+            break;
+
+        case 6:
+            //x translation - key Z
+            t = OVector3 (dt1, 0, 0);
+            c_arm_->UpdateLTestObjPos(t);
+            break;
+        case 7:
+            //y translation - key X
+            t = OVector3(0, dt1, 0);
+            c_arm_->UpdateLTestObjPos(t);
+            break;
+        case 8:
+            //c translation - key C
+            t = OVector3(0, 0, dt1);
+            c_arm_->UpdateLTestObjPos(t);
+            break;
+        case 9:
+            //x rotation (pitch) - key V
+            t = OVector3 (1, 0, 0);
+            c_arm_->UpdateLTestObjRot(t, dt2);
+            break;
+        case 10:
+            //y rotation (yaw) - key B
+            t = OVector3 (0, 1, 0);
+            c_arm_->UpdateLTestObjRot(t, dt2);
+            break;
+        case 11:
+            //z rotation (roll) - key N
+            t = OVector3 (0, 0, 1);
+            c_arm_->UpdateLTestObjRot(t, dt2);
+            break;
+    }
 }

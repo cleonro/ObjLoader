@@ -5,6 +5,8 @@
 #include <iostream>
 #include "AppBaseState.h"
 
+#include <math.h>
+
 extern std::string AppResPath;
 
 OSpecialMesh::OSpecialMesh(int n, int m, float size1, float size2)

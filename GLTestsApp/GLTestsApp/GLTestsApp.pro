@@ -60,7 +60,8 @@ HEADERS += ./GLWidget.h \
     Classes/AppObjLoader/obj_loader.h \
     Classes/AppObjLoader/3d_model.h \
     Classes/AppObjLoader/3d_resource_manager.h \
-    Classes/AppObjLoader/avatar_obj.h
+    Classes/AppObjLoader/avatar_obj.h \
+    Classes/AppObjLoader/3d_dynamic_object.h
 SOURCES += ./GLTestsApp.cpp \
     ./GLWidget.cpp \
     ./main.cpp \
@@ -88,9 +89,14 @@ SOURCES += ./GLTestsApp.cpp \
     Classes/AppObjLoader/3d_model.cpp \
     Classes/AppObjLoader/3d_object.cpp \
     Classes/AppObjLoader/3d_resource_manager.cpp \
-    Classes/AppObjLoader/avatar_obj.cpp
+    Classes/AppObjLoader/avatar_obj.cpp \
+    Classes/AppObjLoader/3d_dynamic_object.cpp
 FORMS += ./GLTestsApp.ui \
     ./ShaderWidget.ui
 RESOURCES += GLTestsApp.qrc
 
 ##DEFINES += APPRESPATH="d:/Organized_Work_2014[gitr]/QtProjects/ObjLoader/Resources/"
+
+QMAKE_CXXFLAGS += -std=c++11 -U__STRICT_ANSI__
+DEFINES += WIN32="100"
+#DEFINES += USE_MATH_DEFINES

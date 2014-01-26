@@ -179,8 +179,8 @@ void* OAppTestShader::GetDataForInput()
 void OAppTestShader::InitShader()
 {
 	//shader_.LoadSources(vertex_shader_s, fragment_shader_s);
-    shader_.LoadFileSources((AppResPath + "vertex_shader.shd").c_str(),
-                            (AppResPath + "fragment_shader.shd").c_str());
+    shader_.LoadFileSources((AppResPath + "vertex_shader_old.shd").c_str(),
+                            (AppResPath + "fragment_shader_old.shd").c_str());
 	shader_.BuildAll();
 	char* vertex_log = shader_.ShaderInfoLog(1);
 	char* fragment_log = shader_.ShaderInfoLog(2);

@@ -19,6 +19,18 @@ public:
     {
         OGL3DCamera*    camera;
         OTestCArm*      c_arm;
+
+        int key_op_type;   //value "-1" stops an operation controlled from keyboard
+                           //positive value starts an operation controlled from keyboard
+        bool shift_modif;  //Shift key is pressed
+
+        tDataForInput()
+        {
+            camera = NULL;
+            c_arm = NULL;
+            key_op_type = -1;
+            shift_modif = false;
+        }
     };
 
     virtual void Init(void* data);
@@ -33,6 +45,8 @@ protected:
 
     OAppTestCArm();
     ~OAppTestCArm();
+
+    void KeyboardOperation();
 
     OTestCArm*      c_arm_;
     tDataForInput   data_for_input_;

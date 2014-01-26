@@ -1,6 +1,7 @@
 #include "Shader.h"
 #include <string.h>
 #include <stdio.h>
+#include <fstream>
 
 OShader::OShader()
 {
@@ -61,19 +62,19 @@ bool OShader::LoadShaderFile(const char* filename, int type)
 	delete [] *shader_s;
 	*shader_s = NULL;
 
-	FILE* f = fopen(filename, "r");
-	if(f == NULL)
-	{
-		return false;
-	}
-	
-	int sz = 0;
-	fseek(f, 0, SEEK_END);
-	sz = ftell(f);
-	fseek(f, 0, SEEK_SET);
-	*shader_s = new char[sz + 1];
-	(*shader_s)[sz] = 0;
-	fread(*shader_s, sz, 1, f);
+    std::fstream f(filename, std::ios::in);
+    if(!f.is_open())
+    {
+        return false;
+    }
+    int sz = 0;
+    f.seekg(0, f.end);
+    sz = f.tellg();
+    f.seekg(0, f.beg);
+    *shader_s = new char[sz + 1];
+    f.read(*shader_s, sz);
+    (*shader_s)[sz] = 0;
+    f.close();
 
 	return true;
 }

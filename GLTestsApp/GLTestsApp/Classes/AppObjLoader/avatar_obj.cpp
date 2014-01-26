@@ -2,7 +2,8 @@
 #include "Math/Quaternion.h"
 #include "Utils/math_utils.h"
 #include "VariousObjects.h"
-//#include <windows.h>
+
+#include <windows.h>
 #include <GL/gl.h>
 
 C_AVATAR_OBJ::C_AVATAR_OBJ()

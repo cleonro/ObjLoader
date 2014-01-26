@@ -10,6 +10,7 @@
 #include "AppObjLoader/3d_resource_manager.h"
 #include "AppObjLoader/3d_model.h"
 #include "AppObjLoader/avatar_obj.h"
+#include "AppObjLoader/3d_dynamic_object.h"
 
 C_3D_RESOURCE_MANAGER* resource_manager = new C_3D_RESOURCE_MANAGER;
 C_OBJ_LOADER* loader = new C_OBJ_LOADER;
@@ -18,6 +19,7 @@ C_AVATAR_OBJ* clone_avatar = NULL;
 
 //test object data
 C_3D_MODEL* test_object = NULL;
+C_3D_DYNAMIC_OBJECT* dynamic_object = NULL;
 //
 
 extern string AppResPath;
@@ -30,6 +32,9 @@ OTestCArm::OTestCArm(float size)
     rotation_ = 0.0f;
     dra_ = 0.0f;
     quat_ = OQuaternion(0, 0, 0, 1);
+
+    test_obj_pos_ = OVector3(0, 0, 0);
+    test_obj_rot_ = OQuaternion(0, 0, 0, 1);
 
     std::string name = "avatar";
     //"cube.obj"
@@ -53,6 +58,10 @@ OTestCArm::OTestCArm(float size)
     //test object
     path = AppResPath + "sdr.obj";
     test_object =  loader->parse_obj_file(path.c_str(), resource_manager, "test_object");
+    dynamic_object = new C_3D_DYNAMIC_OBJECT;
+    dynamic_object->clone(test_object);
+    delete test_object;
+    test_object = NULL;
 
     clone_avatar = new C_AVATAR_OBJ;
     clone_avatar->clone(avatar);
@@ -64,17 +73,17 @@ OTestCArm::OTestCArm(float size)
 
 OTestCArm::~OTestCArm()
 {
-    //test-remove
     delete clone_avatar;
+    delete dynamic_object;
     delete loader;
     delete resource_manager;
-    //
 }
 
 void OTestCArm::Draw()
 {
-   OQuaternion q(quat_.X(), quat_.Y(), quat_.Z(), quat_.W());
-   clone_avatar->matrix() = q.ToMatrix();
+   clone_avatar->matrix() = quat_.ToMatrix();
+   dynamic_object->Position() = test_obj_pos_;
+   dynamic_object->Rotation() = test_obj_rot_.ToMatrix();
 
    //avatar
    glColor4f(0.1, 0.3, 0.7, 1.0);
@@ -82,7 +91,7 @@ void OTestCArm::Draw()
 
    //test-object
    glColor4f(0.7, 0.3, 0.1, 1.0);
-   test_object->draw();
+   dynamic_object->draw(true);
 
    return;
 }
@@ -123,4 +132,22 @@ void OTestCArm::ComputeQuat()
 
     //quat_ = q_ang * q_rot * q_dra;
     quat_ = q_rot * q_ang * q_dra;
+}
+
+void OTestCArm::UpdateLTestObjPos(const OVector3 &translation)
+{
+    OQuaternion qtr(translation, 1);
+    qtr = test_obj_rot_ * qtr * test_obj_rot_.Transpose();
+    OVector3 global_translation = qtr.V3();
+    test_obj_pos_ = test_obj_pos_ + global_translation;
+}
+
+void OTestCArm::UpdateLTestObjRot(const OVector3 &axis, const float &angle)
+{
+    float ang_rad = deg2rad(angle);
+    float hcos = cosf(0.5f * ang_rad);
+    float hsin = sinf(0.5f * ang_rad);
+    OQuaternion lq(hsin * axis, hcos);
+
+    test_obj_rot_ = test_obj_rot_ * lq;
 }
