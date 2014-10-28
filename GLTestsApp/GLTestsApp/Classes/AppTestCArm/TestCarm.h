@@ -16,6 +16,9 @@ public:
     float& Rotation();
     float& Dra();
 
+    OVector3& TestObjectPosition();
+    OQuaternion& TestObjectRot();
+
     //computes c-arm orientation from angulation, rotation, dra
     void ComputeQuat();
 

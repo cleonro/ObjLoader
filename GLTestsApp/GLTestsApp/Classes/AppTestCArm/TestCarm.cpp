@@ -111,6 +111,17 @@ float& OTestCArm::Dra()
     return dra_;
 }
 
+OVector3& OTestCArm::TestObjectPosition()
+{
+    return test_obj_pos_;
+}
+
+OQuaternion& OTestCArm::TestObjectRot()
+{
+    return test_obj_rot_;
+}
+
+
 void OTestCArm::ComputeQuat()
 {
     float ang = deg2rad(angulation_);

@@ -7,6 +7,8 @@ OAppTestCArm::OAppTestCArm()
 
     data_for_input_.camera = &camera_;
     data_for_input_.c_arm = c_arm_;
+
+    keyboard_op_started_ = false;
 }
 
 
@@ -35,7 +37,7 @@ void OAppTestCArm::Update(void* data)
 {
     OAppBaseState::Update(data);
 
-    KeyboardOperation();
+    TestObjectKeyboardOperation();
 
     c_arm_->ComputeQuat();
 
@@ -72,9 +74,12 @@ void OAppTestCArm::Draw()
     glEnableClientState(GL_COLOR_ARRAY);
 
     glPushMatrix();
-    glScalef(5.0f, 5.0f, 5.0f);
+    //glScalef(5.0f, 5.0f, 5.0f);
     c_arm_->Draw();
     glPopMatrix();
+
+    glColor4f(1, 1, 1, 1);
+    TestObjectDrawKeyboardOperation();
 
     glDisableClientState(GL_COLOR_ARRAY);
 
@@ -97,10 +102,11 @@ void OAppTestCArm::Draw()
 
 }
 
-void OAppTestCArm::KeyboardOperation()
+void OAppTestCArm::TestObjectKeyboardOperation()
 {
     if(data_for_input_.key_op_type < 0) {
         //no keyboard operation
+        keyboard_op_started_ = false;
         return;
     }
 
@@ -112,6 +118,7 @@ void OAppTestCArm::KeyboardOperation()
         dt2 *= -1;
     }
     OVector3 t;
+    bool test_op = false;
     switch(data_for_input_.key_op_type) {
         case 0:
             c_arm_->Rotation() -= dt;
@@ -136,31 +143,55 @@ void OAppTestCArm::KeyboardOperation()
             //x translation - key Z
             t = OVector3 (dt1, 0, 0);
             c_arm_->UpdateLTestObjPos(t);
+            test_op = true;
             break;
         case 7:
             //y translation - key X
             t = OVector3(0, dt1, 0);
             c_arm_->UpdateLTestObjPos(t);
+            test_op = true;
             break;
         case 8:
             //c translation - key C
             t = OVector3(0, 0, dt1);
             c_arm_->UpdateLTestObjPos(t);
+            test_op = true;
             break;
         case 9:
             //x rotation (pitch) - key V
             t = OVector3 (1, 0, 0);
             c_arm_->UpdateLTestObjRot(t, dt2);
+            test_op = true;
             break;
         case 10:
             //y rotation (yaw) - key B
             t = OVector3 (0, 1, 0);
             c_arm_->UpdateLTestObjRot(t, dt2);
+            test_op = true;
             break;
         case 11:
             //z rotation (roll) - key N
             t = OVector3 (0, 0, 1);
             c_arm_->UpdateLTestObjRot(t, dt2);
+            test_op = true;
             break;
     }
+
+    if(test_op && !keyboard_op_started_) {
+        keyboard_op_started_ = true;
+        keyboard_op_startp_ = c_arm_->TestObjectPosition();
+        keyboard_op_axis_ = t;
+        keyboard_op_axis_.normalize();
+        OQuaternion rot = c_arm_->TestObjectRot();
+        keyboard_op_axis_ = (rot * OQuaternion(keyboard_op_axis_, 1) * rot.Transpose()).V3();
+    }
+}
+
+void OAppTestCArm::TestObjectDrawKeyboardOperation()
+{
+    if(!keyboard_op_started_) {
+        return;
+    }
+    float length = 1000.0f;
+    draw_axis(keyboard_op_startp_ + (-length) * keyboard_op_axis_, keyboard_op_axis_, 2.0f * length, false, 0.0001f);
 }

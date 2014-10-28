@@ -11,6 +11,7 @@ std::string AppResPath = APPRESPATH;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    //a.setStyle("fusion");
 	GLTestsApp w;
 	w.resize(QSize(1024, 768));
 	w.show();

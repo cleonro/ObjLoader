@@ -493,11 +493,11 @@ void DrawCube()
 }
 //
 
-void draw_axis(OVector3 origin, OVector3 direction, float length, bool arrow)
+void draw_axis(OVector3 origin, OVector3 direction, float length, bool arrow, float radius_f)
 {
     direction.normalize();
 
-    const float radius = 0.01f * length;
+    const float radius = radius_f * length;
     const int N = 16;
     const float ang = 2.0f * (float)M_PI / N;
     const float h = arrow ? length / 20.0f : 0;
