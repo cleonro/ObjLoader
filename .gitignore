@@ -27,3 +27,4 @@ ipch*/
 #Ignore start command
 start.bat
 GLTestsApp/build-GLTestsApp*
+GLTestsApp/GLTestsApp/GLTestsApp.pro.user*
