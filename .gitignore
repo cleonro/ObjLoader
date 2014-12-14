@@ -28,3 +28,4 @@ ipch*/
 start.bat
 GLTestsApp/build-GLTestsApp*
 GLTestsApp/GLTestsApp/GLTestsApp.pro.user*
+GLTestsApp/*build*
