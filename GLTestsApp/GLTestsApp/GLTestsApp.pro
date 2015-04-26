@@ -21,9 +21,9 @@ QMAKE_LIBDIR += ./OtherLibs
 #linux libs
 unix: LIBS += -lGL \
               -lGLU
-else:win32:
+
 #windows libs
-      LIBS += -lopengl32 \
+win32: LIBS += -lopengl32 \
               -lglu32 \
 
 MOC_DIR += ./GeneratedFiles/debug
@@ -96,7 +96,8 @@ FORMS += ./GLTestsApp.ui \
 RESOURCES += GLTestsApp.qrc
 
 ##DEFINES += APPRESPATH="d:/Organized_Work_2014[gitr]/QtProjects/ObjLoader/Resources/"
+DEFINES += APPRESPATH=\\\"/home/catalin/Work_Projects/Git_repositories/ObjLoader/Resources/\\\"
 
 QMAKE_CXXFLAGS += -std=c++11 -U__STRICT_ANSI__
-DEFINES += WIN32="100"
-#DEFINES += USE_MATH_DEFINES
+win32: DEFINES += WIN32="100"
+win32: DEFINES += USE_MATH_DEFINES

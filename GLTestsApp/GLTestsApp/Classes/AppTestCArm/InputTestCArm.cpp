@@ -1,10 +1,10 @@
-#include "InputTestCArm.h"
-#include "AppTestCArm.h"
-#include "GLCamera.h"
-
 //test - search another solution
 #include <QApplication>
 //
+
+#include "InputTestCArm.h"
+#include "AppTestCArm.h"
+#include "GLCamera.h"
 
 OInputTestCArm::OInputTestCArm()
 {

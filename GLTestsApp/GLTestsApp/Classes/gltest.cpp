@@ -290,12 +290,18 @@ void OSpecialMesh::GenerateDataFromFile(const char* file_name)
         bool vessel_found = false;
         while(!f.eof()) {
             std::getline(f, line);
-            if(line != "[Vessel]" && !vessel_found) {
-                continue;
-            } else if(!vessel_found) {
+
+            if(line == "[Vessel]" || line == "[Vessel]\r")
+            {
                 vessel_found = true;
                 continue;
             }
+
+            if(!vessel_found)
+            {
+                continue;
+            }
+
             linestream.clear();
             linestream.str(line.c_str());
             linestream >> coord.x >> coord.y >> coord.z >> nor.x >> nor.y >> nor.z >> icol;
