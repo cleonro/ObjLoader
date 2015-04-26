@@ -9,6 +9,8 @@ class OVector3;
 class OMatrix4
 {
 	friend class OVector4;
+    friend class OQuaternion;
+    friend class OGL3DShaderCamera;
 public:
 //constructors
 	OMatrix4();

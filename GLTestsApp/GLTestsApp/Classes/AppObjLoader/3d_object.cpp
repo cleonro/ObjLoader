@@ -1,5 +1,7 @@
 #include "3d_model.h"
+#ifdef WIN32
 #include <windows.h>
+#endif
 #include <GL/gl.h>
 
 C_3D_MODEL::C_3D_OBJECT::C_3D_OBJECT()

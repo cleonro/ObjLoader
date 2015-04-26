@@ -46,7 +46,8 @@ protected:
     OAppTestCArm();
     ~OAppTestCArm();
 
-    void KeyboardOperation();
+    void TestObjectKeyboardOperation();
+    void TestObjectDrawKeyboardOperation();
 
     OTestCArm*      c_arm_;
     tDataForInput   data_for_input_;
@@ -54,4 +55,8 @@ protected:
     OVector3        z_axis_;
     OVector3        xz_proj_;//secondary angle
     OVector3        yz_proj_;//primary angle
+
+    OVector3        keyboard_op_startp_;
+    OVector3        keyboard_op_axis_;
+    bool            keyboard_op_started_;
 };

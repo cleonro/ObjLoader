@@ -89,6 +89,6 @@ void DrawAxes(float length);
 
 void DrawCube();
 
-void draw_axis(OVector3 origin, OVector3 direction, float length, bool arrow = true);
+void draw_axis(OVector3 origin, OVector3 direction, float length, bool arrow = true, float radius_f = 0.01f);
 
 void draw_axes(float length);

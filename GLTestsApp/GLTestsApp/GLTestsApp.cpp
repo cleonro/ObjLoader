@@ -2,25 +2,36 @@
 #include "AppBaseState.h"
 #include "InputMgr.h"
 
+#include <QStyleFactory>
+
 GLTestsApp::GLTestsApp(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags)
 {
-	this->setBaseSize(QSize(1024, 768));
-        ui_.setupUi(this);
+    this->setBaseSize(QSize(1024, 768));
+    ui_.setupUi(this);
 	
-        connect(ui_.actionShader_Editor, SIGNAL(triggered(bool)), this, SLOT(OnViewShaderEditor()));
-        ui_.actionShader_Editor->setVisible(false);
+    connect(ui_.actionShader_Editor, SIGNAL(triggered(bool)), this, SLOT(OnViewShaderEditor()));
+    ui_.actionShader_Editor->setVisible(false);
 
 	this->setWindowTitle("GLTestsApp");
 
-        action_group_ = new QActionGroup(this);
-        action_group_->addAction(ui_.actionBase_State);
-        action_group_->addAction(ui_.actionTest_Shader);
-        action_group_->addAction(ui_.actionTest_CArm);
+    action_group_ = new QActionGroup(this);
+    action_group_->addAction(ui_.actionBase_State);
+    action_group_->addAction(ui_.actionTest_Shader);
+    action_group_->addAction(ui_.actionTest_CArm);
 
-        connect(ui_.actionBase_State, SIGNAL(triggered()), this, SLOT(OnStatesBaseState()));
-        connect(ui_.actionTest_Shader, SIGNAL(triggered()), this, SLOT(OnStatesTestShader()));
-        connect(ui_.actionTest_CArm, SIGNAL(triggered()), this, SLOT(OnStatesTestCArm()));
+    connect(ui_.actionBase_State, SIGNAL(triggered()), this, SLOT(OnStatesBaseState()));
+    connect(ui_.actionTest_Shader, SIGNAL(triggered()), this, SLOT(OnStatesTestShader()));
+    connect(ui_.actionTest_CArm, SIGNAL(triggered()), this, SLOT(OnStatesTestCArm()));
+
+    qApp->setStyle("Fusion");
+    setMenuStyles();
+
+    QFile styleSheetFile(":/GLTestsApp/darkorange.stylesheet");
+    styleSheetFile.open(QIODevice::ReadOnly);
+    QString styleSheetString(styleSheetFile.readAll());
+    styleSheetFile.close();
+    qApp->setStyleSheet(styleSheetString);
 }
 
 GLTestsApp::~GLTestsApp()
@@ -118,4 +129,38 @@ void GLTestsApp::keyPressEvent(QKeyEvent *event)
         return;
     }
     INPUTMGR->OnKeyPress(event->key());
+}
+
+void GLTestsApp::setMenuStyles()
+{
+    QString currentStyle = qApp->style()->objectName();
+    QStringList styles = QStyleFactory::keys();
+    QMenu* menuStyles= ui_.menuStyles;
+    QActionGroup* styleActions = new QActionGroup(this);
+    foreach (QString styleString, styles) {
+        QAction* a = new QAction(styleString, this);
+        a->setCheckable(true);
+        styles_map_[a] = styleString;
+        if(styleString.toLower() == currentStyle.toLower()) {
+            a->setChecked(true);
+        }
+        styleActions->addAction(a);
+        menuStyles->addAction(a);
+        Q_ASSERT(connect(a, &QAction::toggled, this, &GLTestsApp::onActionToggled));
+    }
+}
+
+void GLTestsApp::onActionToggled(bool checked)
+{
+    QObject* sender = this->sender();
+    if(sender == nullptr) {
+        return;
+    }
+
+    if(checked) {
+        QString styleString = styles_map_[sender];
+        if(!styleString.isEmpty()) {
+            qApp->setStyle(styleString);
+        }
+    }
 }
