@@ -59,6 +59,9 @@ void OAppBaseState::Draw()
 // 	sprintf_s(str, 30, "Camera Roll %.2f", camera_.GetRoll());
 // 	show_fps(1, 15, 150, 150, str);
 
+    glClearColor(0.9f, 0.7f, 0.7f, 1.0f);
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
 	LightOn();
     DrawAxes(100.0f);
 	glEnable(GL_NORMALIZE);

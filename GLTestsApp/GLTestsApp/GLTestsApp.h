@@ -32,7 +32,7 @@ protected:
     void keyReleaseEvent(QKeyEvent *event);
     void keyPressEvent(QKeyEvent *event);
 
-    QGLWidget* GLWidget();
+    QOpenGLWidget *GLWidget();
 
 private:
     void setMenuStyles();

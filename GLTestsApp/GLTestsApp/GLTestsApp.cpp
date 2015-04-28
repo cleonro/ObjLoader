@@ -61,7 +61,7 @@ void GLTestsApp::OnViewShaderEditor()
 
 void GLTestsApp::OnStatesBaseState()
 {
-    QGLWidget* gl_widget = this->GLWidget();
+    QOpenGLWidget* gl_widget = this->GLWidget();
     if(APPMNGR.GetStateId() == OAppManager::APP_BASE_STATE || gl_widget == NULL) {
        return;
     }
@@ -73,12 +73,12 @@ void GLTestsApp::OnStatesBaseState()
     INPUTMGR->ChangeState(INPUT_BASE);
 
     APPMNGR.GetState()->Init(&aspect);
-    ((CGLWidget*)gl_widget)->updateGL();
+    gl_widget->repaint();
 }
 
 void GLTestsApp::OnStatesTestShader()
 {
-    QGLWidget* gl_widget = this->GLWidget();
+    QOpenGLWidget* gl_widget = this->GLWidget();
     if(APPMNGR.GetStateId() == OAppManager::APP_TEST_SHADER || gl_widget == NULL) {
        return;
     }
@@ -90,12 +90,12 @@ void GLTestsApp::OnStatesTestShader()
     INPUTMGR->ChangeState(INPUT_BASE);
 
     APPMNGR.GetState()->Init(&aspect);
-    ((CGLWidget*)gl_widget)->updateGL();
+    gl_widget->update();
 }
 
 void GLTestsApp::OnStatesTestCArm()
 {
-    QGLWidget* gl_widget = this->GLWidget();
+    QOpenGLWidget* gl_widget = this->GLWidget();
     if(APPMNGR.GetStateId() == OAppManager::APP_TEST_C_ARM || gl_widget == NULL) {
        return;
     }
@@ -107,12 +107,12 @@ void GLTestsApp::OnStatesTestCArm()
      INPUTMGR->ChangeState(INPUT_TEST_C_ARM);
 
      APPMNGR.GetState()->Init(&aspect);
-     ((CGLWidget*)gl_widget)->updateGL();
+     gl_widget->update();
 }
 
-QGLWidget* GLTestsApp::GLWidget()
+QOpenGLWidget* GLTestsApp::GLWidget()
 {
-    return (QGLWidget*)this->centralWidget();
+    return dynamic_cast<QOpenGLWidget*>(this->centralWidget());
 }
 
 void GLTestsApp::keyReleaseEvent(QKeyEvent *event)

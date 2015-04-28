@@ -3,7 +3,10 @@
 #include <QGLWidget>
 #include <QTimer>
 
-class CGLWidget : public QGLWidget
+#include <QOpenGLWidget>
+#include <QOpenGLFunctions>
+
+class CGLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
 	Q_OBJECT
 public:
@@ -17,7 +20,7 @@ public:
 	void StartTimer();
 	void StopTimer();
 		
-	QGLWidget* hiddenWidget;
+    QOpenGLWidget* hiddenWidget;
 			
 protected:
 	void initializeGL();

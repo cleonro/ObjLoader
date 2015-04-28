@@ -3,9 +3,9 @@
 
 #include "AppBaseState.h"
 #include "InputMgr.h"
-#include <QGLContext>
+#include <QOpenGLContext>
 
-CGLWidget::CGLWidget(QWidget *parent) : QGLWidget(parent)
+CGLWidget::CGLWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
 	this->setMouseTracking(true);
 	cx = 0;
@@ -15,7 +15,7 @@ CGLWidget::CGLWidget(QWidget *parent) : QGLWidget(parent)
 	
 	hiddenWidget = NULL;
 	timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(OnTimer()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(OnTimer()));
 }
 
 
@@ -30,7 +30,7 @@ CGLWidget::~CGLWidget()
 
 void CGLWidget::OnTimer()
 {
-	updateGL();
+    update();
 }
 
 void CGLWidget::StartTimer()
@@ -46,7 +46,7 @@ void CGLWidget::StopTimer()
 	timerCounter--;
 	if(timerCounter == 0) {
 		timer->stop();
-		updateGL();
+        update();
 	}
 }
 
@@ -62,6 +62,9 @@ QSize CGLWidget::sizeHint() const
 
 void CGLWidget::initializeGL()
 {
+    initializeOpenGLFunctions();
+
+
 	glDisable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -75,19 +78,21 @@ void CGLWidget::initializeGL()
 
 	glPixelZoom(1.0,1.0);
 
-	QGLFormat format = this->context()->format();
-	hiddenWidget = new QGLWidget(/*format,*/ NULL, this);
+//    QSurfaceFormat format = this->context()->format();
+//    hiddenWidget = new QOpenGLWidget(this);
+//    hiddenWidget->setFormat(format);
 
 	StartTimer();
 }
 
 void CGLWidget::paintGL()
 {
-	glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	
+    glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
         OAppBaseState* state = APPMNGR.GetState();
         if(state == NULL) {
+            VDraws->DrawAxes(50.0, 3.0);
             return;
         }
 
@@ -143,7 +148,7 @@ void CGLWidget::mouseMoveEvent(QMouseEvent *event)
 	point.setX(x);
 
 	INPUTMGR->OnMouseMove(point);
-	updateGL();
+    update();
 }
 
 void CGLWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -173,7 +178,7 @@ void CGLWidget::wheelEvent(QWheelEvent *event)
 
 	INPUTMGR->OnMouseWheel( delta, point);
 
-	updateGL();
+    update();
 }
 
 void CGLWidget::keyReleaseEvent(QKeyEvent *event)
