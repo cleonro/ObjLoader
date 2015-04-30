@@ -6,7 +6,7 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 
-class CGLWidget : public QOpenGLWidget, protected QOpenGLFunctions
+class CGLWidget : public QOpenGLWidget
 {
 	Q_OBJECT
 public:

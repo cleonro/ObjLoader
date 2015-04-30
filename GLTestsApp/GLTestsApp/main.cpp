@@ -18,6 +18,6 @@ int main(int argc, char *argv[])
 	GLTestsApp w;
 	w.resize(QSize(1024, 768));
 	w.show();
-	
+    w.SetBaseState();
 	return a.exec();
 }

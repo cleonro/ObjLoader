@@ -96,7 +96,7 @@ FORMS += ./GLTestsApp.ui \
 RESOURCES += GLTestsApp.qrc
 
 ##DEFINES += APPRESPATH="d:/Organized_Work_2014[gitr]/QtProjects/ObjLoader/Resources/"
-DEFINES += APPRESPATH=\\\"/home/catalin/Work_Projects/Git_repositories/ObjLoader/Resources/\\\"
+DEFINES += APPRESPATH=\\\"/home/catalin/Work/Projects/Git_repositories/ObjLoader/Resources/\\\"
 
 QMAKE_CXXFLAGS += -std=c++11 -U__STRICT_ANSI__
 win32: DEFINES += WIN32="100"

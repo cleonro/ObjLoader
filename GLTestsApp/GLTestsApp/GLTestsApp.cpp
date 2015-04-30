@@ -164,3 +164,9 @@ void GLTestsApp::onActionToggled(bool checked)
         }
     }
 }
+
+void GLTestsApp::SetBaseState()
+{
+    ui_.actionTest_CArm->setChecked(true);
+    OnStatesTestCArm();
+}

@@ -18,6 +18,8 @@ public:
 	QSize minimumSizeHint() const;
 	QSize sizeHint() const;
 
+    void SetBaseState();
+
 protected slots:
         void OnViewShaderEditor();
         void OnStatesBaseState();
