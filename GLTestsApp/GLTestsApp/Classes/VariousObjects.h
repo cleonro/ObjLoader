@@ -13,8 +13,14 @@
 #if WIN32
 #include <windows.h>
 #endif
+
+#if __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 
 #define VDraws OVariousObjects::GetInstance()
 
@@ -23,29 +29,29 @@
 class OVariousObjects
 {
 protected:
-	OVariousObjects();
-	~OVariousObjects();
-	GLfloat quad[12];
-	GLfloat quad_norm[12];
+    OVariousObjects();
+    ~OVariousObjects();
+    GLfloat quad[12];
+    GLfloat quad_norm[12];
         GLfloat cube_[24];
 public:
-	static OVariousObjects* GetInstance();
-	void DrawCone(GLfloat height,GLfloat radius,GLint points);
-	void DrawAxes(GLfloat size,GLfloat linewidth);
-	
-	void DrawHorizontalQuad(GLfloat size_x, GLfloat size_y);
-	void DrawCube();
-	void DrawBox(OVector3 min, OVector3 max);
-	void DrawHorizontalObject(GLfloat size_x, GLfloat size_y, GLfloat size_z,
-							  GLfloat dist, GLfloat angle);
+    static OVariousObjects* GetInstance();
+    void DrawCone(GLfloat height,GLfloat radius,GLint points);
+    void DrawAxes(GLfloat size,GLfloat linewidth);
 
-	void DrawVector(GLfloat ox, GLfloat oy, GLfloat oz, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat length);
+    void DrawHorizontalQuad(GLfloat size_x, GLfloat size_y);
+    void DrawCube();
+    void DrawBox(OVector3 min, OVector3 max);
+    void DrawHorizontalObject(GLfloat size_x, GLfloat size_y, GLfloat size_z,
+                              GLfloat dist, GLfloat angle);
 
-	//new functions
-	void DrawPlaneEq(OVector3 n, float d); //draws a quad, included in a plane with the normal "n" 
-										  //and at distance "d" from the origin
-	void DrawTriangle(OVector3 v0, OVector3 v1, OVector3 v2);
-	void DrawTriQuad(OVector3 v0, OVector3 v1, OVector3 v2, OVector3 v3);
+    void DrawVector(GLfloat ox, GLfloat oy, GLfloat oz, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat length);
+
+    //new functions
+    void DrawPlaneEq(OVector3 n, float d); //draws a quad, included in a plane with the normal "n"
+                                          //and at distance "d" from the origin
+    void DrawTriangle(OVector3 v0, OVector3 v1, OVector3 v2);
+    void DrawTriQuad(OVector3 v0, OVector3 v1, OVector3 v2, OVector3 v3);
 };
 
 #endif

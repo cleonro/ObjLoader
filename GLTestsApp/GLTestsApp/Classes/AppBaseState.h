@@ -12,8 +12,8 @@ public:
 	
 
 	virtual void Init(void* data);
-	virtual void Update(void* data = NULL);
-	virtual void Update2(void* data = NULL);
+    virtual void Update(void* data = nullptr);
+    virtual void Update2(void* data = nullptr);
 	virtual void Draw();
 
 	virtual void* GetDataForInput();
@@ -53,7 +53,7 @@ public:
 	static OAppManager& GetInstance();
 	inline int GetStateId() {return app_state_id_;}
 	inline void* GetDataForInput() { if(app_state_) return app_state_->GetDataForInput();
-									else return NULL;}
+                                    else return nullptr;}
 protected:
 	OAppManager();
 	~OAppManager();

@@ -2,7 +2,12 @@
 #ifdef WIN32
 #include <windows.h>
 #endif
+#if __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/gl.h>
+#endif
+
 
 C_3D_MODEL::C_3D_OBJECT::C_3D_OBJECT()
 {

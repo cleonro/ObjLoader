@@ -6,6 +6,7 @@ TEMPLATE = app
 TARGET = GLTestsApp
 DESTDIR = ../GLTestsApp-build-desktop
 QT += core gui opengl widgets
+#QT += widgets
 CONFIG += debug
 DEFINES += QT_LARGEFILE_SUPPORT QT_OPENGL_LIB
 INCLUDEPATH += ./GeneratedFiles \
@@ -16,15 +17,20 @@ INCLUDEPATH += ./GeneratedFiles \
 
 DEPENDPATH += . \
 
-QMAKE_LIBDIR += ./OtherLibs
+#QMAKE_LIBDIR += ./OtherLibs
 
 #linux libs
-unix: LIBS += -lGL \
-              -lGLU
+unix:!macx {
+  LIBS += -lGL \
+         -lGLU
+}
 
 #windows libs
 win32: LIBS += -lopengl32 \
               -lglu32 \
+
+#mac os libs
+macx: LIBS += -framework Cocoa
 
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug
@@ -52,11 +58,11 @@ HEADERS += ./GLWidget.h \
     Classes/AppTestCArm/AppTestCArm.h \
     Classes/AppTestCArm/TestCarm.h \
     Classes/AppTestCArm/InputTestCArm.h \
-    OtherLibs/vector4.h \
-    OtherLibs/vector3.h \
-    OtherLibs/quaternion.h \
-    OtherLibs/matrix4.h \
-    OtherLibs/draw_utils.h \
+    ##OtherLibs/vector4.h \
+    ##OtherLibs/vector3.h \
+    ##OtherLibs/quaternion.h \
+    ##OtherLibs/matrix4.h \
+    ##OtherLibs/draw_utils.h \
     Classes/AppObjLoader/obj_loader.h \
     Classes/AppObjLoader/3d_model.h \
     Classes/AppObjLoader/3d_resource_manager.h \
@@ -96,7 +102,8 @@ FORMS += ./GLTestsApp.ui \
 RESOURCES += GLTestsApp.qrc
 
 ##DEFINES += APPRESPATH="d:/Organized_Work_2014[gitr]/QtProjects/ObjLoader/Resources/"
-DEFINES += APPRESPATH=\\\"/home/catalin/Work/Projects/Git_repositories/ObjLoader/Resources/\\\"
+##DEFINES += APPRESPATH=\\\"/home/catalin/Work/Projects/Git_repositories/ObjLoader/Resources/\\\"
+DEFINES += APPRESPATH=\\\"/Users/catalin/Work/Projects/Git_repositories/ObjLoader/ObjLoader/Resources/\\\"
 
 QMAKE_CXXFLAGS += -std=c++11 -U__STRICT_ANSI__
 win32: DEFINES += WIN32="100"

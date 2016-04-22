@@ -2,7 +2,12 @@
 #if WIN32
 #include <windows.h>
 #endif
+#if __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/gl.h>
+#endif
+
 #include "AppBaseState.h"
 
 //test-remove

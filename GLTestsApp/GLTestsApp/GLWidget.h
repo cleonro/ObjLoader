@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QGLWidget>
 #include <QTimer>
 
 #include <QOpenGLWidget>
